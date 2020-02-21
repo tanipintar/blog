@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+*{
+    font-family: 'Quicksand', sans-serif;
+}
+
+html,
+body,
+header,
+.view {
+    height: 100vh;
+}
+
+@media (max-width: 740px) {
+    html,
+    body,
+    header,
+    .view {
+    height: 100vh;
+    }
+}
+
+.top-nav-collapse {
+    background-color: #2E830D !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+}
+
+@media (max-width: 991px) {
+.navbar:not(.top-nav-collapse) {
+    background: #2E830D !important;
+}
+}
+
+h1 {
+    letter-spacing: 8px;
+}
+
+h5 {
+    letter-spacing: 3px;
+}
+
+.hr-light {
+    border-top: 3px solid #fff;
+    width: 80px;
+}
+.custombg{
+    background-image: url('../img/img/4.jpg'); 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: center center;
+}
+.custombg-about{
+    background-image: url('../img/img/4.jpg'); 
+    height: 50vh;
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: center center;
+}
+.paralax-img{
+    background-image: url('../img/img/2a.jpg');
+   height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-color: rgb(221, 138, 29); */
+}
+.custombg-portofolio{
+    background-image: url('../img/img/4.jpg'); 
+    height: 50vh;
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: center center;
+}
