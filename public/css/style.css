@@ -24,9 +24,9 @@ header,
     background-color: #2E830D !important;
 }
 
-.navbar:not(.top-nav-collapse) {
-    background: transparent !important;
-}
+/* .navbar:not(.top-nav-collapse) {
+    background: transparent;
+} */
 
 @media (max-width: 991px) {
 .navbar:not(.top-nav-collapse) {

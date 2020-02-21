@@ -28,19 +28,26 @@ const MenuNav = () =>{
             <a className="nav-link">Budidaya Padi</a>
           </Link>
         </li> */}
-        <li className={route.pathname == '/Budidaya' ? 'nav-item activeNav dropdowns' : 'nav-item dropdowns'}>
+        <li className={route.pathname == '/Pengolahan' ? 'nav-item activeNav dropdowns' : 
+        route.pathname == '/Pembibitan' ? 'nav-item activeNav dropdowns' :
+        route.pathname == '/Fase' ? 'nav-item activeNav dropdowns' : 'nav-item dropdowns'}>
           <a className="nav-link dropdown-toggle">Budidaya Padi</a>
           <div className="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
-          <Link href="/Budidaya">
-              <a className="dropdown-item">Pengolahan Lahan</a>
+          <Link href="/Pengolahan">
+              <a className="dropdown-item yellow-ic">Pengolahan Lahan</a>
             </Link>
-            <Link href="/Budidaya">
-              <a className="dropdown-item">Pembibitan Benih</a>
+            <Link href="/Pembibitan">
+              <a className="dropdown-item yellow-ic">Pembibitan Benih</a>
             </Link>
-            <Link href="/Budidaya">
-              <a className="dropdown-item">Fase-Fase Petumbuhan</a>
+            <Link href="/Fase">
+              <a className="dropdown-item yellow-ic">Fase-Fase Petumbuhan</a>
             </Link>
           </div>
+        </li>
+        <li className={route.pathname == '/jenis' ? 'nav-item activeNav' : 'nav-item'}>
+          <Link href="/jenis">
+            <a className="nav-link">Jenis Nutrisi</a>
+          </Link>
         </li>
         <li className={route.pathname == '/portofolio' ? 'nav-item activeNav' : 'nav-item'}>
           <Link href="/portofolio">
@@ -52,8 +59,8 @@ const MenuNav = () =>{
             <a className="nav-link">Contact</a>
           </Link>
         </li>
-        <li className={route.pathname == '/LoginPage' ? 'nav-item activeNav' : 'nav-item'}>
-          <Link href="/Login">
+        <li className={route.pathname == '/login' ? 'nav-item activeNav' : 'nav-item'}>
+          <Link href="/login">
             <a className="nav-link">Admin</a>
           </Link>
         </li>

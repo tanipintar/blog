@@ -1,38 +1,40 @@
 import React from 'react'
 
-const Login =()=> (
-<div>
-<div className="card">
+const Loginview = () => (
+    <div>
+        <div className="py-3 container">
+            <div className="row">
+                <div className="col-lg-6 col-md-12 d-none d-lg-block">
+                    <div className="align-content-center flex-center justify-content-center p-5">
+                        <img className="w-75 z-depth-1 card" src="../img/img/mp01.jpg"></img>
+                    </div>
+                </div>
+                <div className="col-lg-6 col-md-12 col-sm-9 p-5">
+                    <form className="mt-5" action="#!">
 
-    <h5 className="card-header info-color white-text text-center py-4">
-        <strong>Subscribe</strong>
-    </h5>
+                        <h3 className="text-center font-weight-bold mb-4 text-white">Login Admin</h3>
 
-    <div className="card-body px-lg-5">
+                        <div className="md-form mb-2 bg-white pb-1" style={{ borderRadius: '25px' }}>
+                            <i className="fas fa-lock prefix ml-3 mt-2"></i>
+                            <input type="email" id="inputValidationEx2" className="form-control form-control-lg border-0" />
+                            <label htmlFor="inputValidationEx2" className="ml-5">Email</label>
+                        </div>
+                        <div className="md-form mb-2 bg-white pb-1" style={{ borderRadius: '25px' }}>
+                        <i className="fas fa-envelope prefix ml-3 mt-2"></i>
+                            <input type="password" id="inputValidationEx2" className="form-control form-control-lg border-0" />
+                            <label htmlFor="inputValidationEx2" className="ml-5">Password</label>
+                        </div>
 
-        <form className="text-center" style={{color: '#757575'}} action="#!">
+                        <div className="flex-center">
+                            <button className="btn success-color text-white col-md-6" type="submit" style={{ borderRadius: '25px' }}>Sign in</button>
 
-            <p>Join our mailing list. We write rarely, but only the best content.</p>
+                        </div>
 
-            <p>
-                <a href="" target="_blank">See the last newsletter</a>
-            </p>
-            <div className="md-form mt-3">
-                <input type="text" id="materialSubscriptionFormPasswords" className="form-control"/>
-                <label htmlFor="materialSubscriptionFormPasswords">Name</label>
+                    </form>
+                </div>
+
             </div>
-
-            <div className="md-form">
-                <input type="email" id="materialSubscriptionFormEmail" className="form-control"/>
-                <label htmlFor="materialSubscriptionFormEmail">E-mail</label>
-            </div>
-            <button className="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Sign in</button>
-
-        </form>
-
+        </div>
     </div>
-
-</div>
-</div>
-   )
-export default Login
+)
+export default Loginview

@@ -9,16 +9,22 @@ import loadjs from 'loadjs'
 
 export default class Navbar extends React.Component{
   state ={
-    togle : false
+    togle : false,
+    navScroll : "navbar navbar-expand-lg navbar-dark fixed-top"
   }
-  // componentDidMount(){
-  //   loadjs([
-  //     '/js/jquery.min.js','/js/popper.min.js','/js/bootstrap.min.js', '/js/mdb.min.js'
-  //   ], {
-  //     success: function() { },
-  //     async: false
-  //   });
-  // }
+  componentDidMount(){
+    window.addEventListener('scroll', this.handleScroll );
+  }
+  handleScroll=()=>{
+    if (window.pageYOffset > 20) {
+      this.setState({ navScroll: "navbar navbar-expand-lg navbar-dark fixed-top scroolnav" });   
+        
+    }else if(window.pageYOffset <=20){
+      this.setState({ navScroll: "navbar navbar-expand-lg navbar-dark fixed-top" });
+        
+    }
+   
+  }
   showTogle=()=>{
     this.setState({
       togle : !this.state.togle
@@ -38,7 +44,7 @@ export default class Navbar extends React.Component{
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <meta http-equiv="x-ua-compatible" content="ie=edge"/>
         <title>{this.props.title}</title>
-        <link rel="shortcut icon" href="/plant.png" />
+        
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
         <link rel="stylesheet" href="/css/bootstrap.min.css"/>
@@ -51,7 +57,7 @@ export default class Navbar extends React.Component{
         <script type="text/javascript" src="" async/> */}
   
         </Head>
-        <nav className="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+        <nav className={this.state.navScroll}>
             <div className="container">
               <a className="navbar-brand yellow-text font-weight-bold" href="/"><strong><h2>Tani Pintar</h2></strong></a>
               <button className="navbar-toggler" type="button" data-toggle="collapse" onClick={this.showTogle}
@@ -60,11 +66,6 @@ export default class Navbar extends React.Component{
               </button>
               <div className={classNav}>
                 <MenuNav/>
-                {/* <form className="form-inline">
-                  <div className="md-form my-0">
-                    <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>
-                  </div>
-                </form> */}
               </div>
             </div>
           </nav>
@@ -73,25 +74,30 @@ export default class Navbar extends React.Component{
               .activeNav {
                 border-bottom: 1px solid rgb(243, 212, 39);
             }
+            .scroolnav{
+              background-color: #2E830D;
+              transition: all ease 0.7s;
+            }
             .dropdowns {
-                position: relative;
-                display: inline-block;
-              }
+              position: relative;
+              display: inline-block;
+            }
 
-              .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f9f9f9;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                padding: 12px 16px;
-                z-index: 1;
-              }
+            .dropdown-content {
+              display: none;
+              position: absolute;
+              background-color: #2E830D;
+              min-width: 160px;
+              box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+              padding: 12px 16px;
+              z-index: 1;
+            }
 
-              .dropdowns:hover .dropdown-content {
-                display: block;
-              }
+            .dropdowns:hover .dropdown-content {
+              display: block;
+            }
             `}</style>
+        
       </div>
     )
   }
