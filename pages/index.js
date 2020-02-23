@@ -5,6 +5,7 @@ import Step from '../components/step'
 import Postingan from '../components/Postingan'
 import Footer from '../components/footer'
 import Sri from '../components/SRI'
+import { loadDB } from '../lib/koneksi'
 
 const Home = () => (
   <div>
@@ -45,5 +46,14 @@ const Home = () => (
       <Footer/>
   </div>
 )
-
+// Home.getInitialProps = async () =>{
+//   const db = await loadDB();
+//   let data = [];
+//   const snap =await db.firestore().collection("Post").get();
+//   snap.forEach(snapshot =>{
+//     data.push(snapshot.data())
+//   })
+//   console.log(data)
+//   return { data }
+// }
 export default Home

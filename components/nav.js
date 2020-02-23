@@ -1,8 +1,7 @@
 import React from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
 import MenuNav from './navMenu'
-import loadjs from 'loadjs'
+// import loadjs from 'loadjs'
 // const color = () =>{
 //   bac
 // }
