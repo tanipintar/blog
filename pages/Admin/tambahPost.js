@@ -13,13 +13,15 @@ export default class tambahPost extends React.Component {
             isi: '',
             imgUrl: '',
             tanggal: new Date().toLocaleString(),
-            namaImg : ''
+            namaImg: ''
         },
         image: null,
         url: '',
         loading: false,
         form: false,
-        alertSuccess: false
+        alertSuccess: false,
+        button: false,
+        formUpload: true
     }
     async upload() {
         this.state.loading = true;
@@ -34,11 +36,12 @@ export default class tambahPost extends React.Component {
             storage().ref("Konten").child(this.state.image.name).getDownloadURL().then(url => {
                 this.setState(Object.assign(this.state.konten, {
                     imgUrl: url,
-                    namaImg : this.state.image.name
+                    namaImg: this.state.image.name
                 }));
                 this.setState({
                     loading: false,
-                    form: true
+                    form: true,
+                    formUpload : false
                 });
             })
         })
@@ -50,7 +53,7 @@ export default class tambahPost extends React.Component {
             creator: this.state.konten.creator,
             isi: this.state.konten.isi,
             imgUrl: this.state.konten.imgUrl,
-            namaImg : this.state.konten.namaImg
+            namaImg: this.state.konten.namaImg
         })
         let data = this.state.konten;
         await db.firestore().collection("Post").add(data).then(() => {
@@ -93,15 +96,17 @@ export default class tambahPost extends React.Component {
                     <div className="row col-md">
                         <div className="card z-depth-1 col-md-6 border-light p-5" action="#!">
                             <p className="h4 mb-4">Tambah Postingan</p>
-                            <div className="row justify-content-around rounded">
-                                <label className="btn btn-sm">
-                                    <i className="fas fa-folder-plus green-ic" style={{ fontSize: '20px' }}></i>
-                                    <input type="file" style={{ display: 'none' }}
-                                        onChange={(e) => this.setState({ image: e.target.files[0] })} />
-                                </label>
-                                <button className="btn btn-success btn-sm"
-                                    onClick={() => this.upload()} type="button">Upload</button>
-                            </div>
+                            {this.state.formUpload ? <div className="row justify-content-around rounded">
+                                {this.state.button ? <button className="btn btn-success btn-sm"
+                                    onClick={() => this.upload()} type="button">Upload</button> : <label className="btn btn-sm">
+                                        <i className="fas fa-folder-plus green-ic" style={{ fontSize: '20px' }}></i>
+                                        <input type="file" style={{ display: 'none' }}
+                                            onChange={(e) => this.setState({
+                                                image: e.target.files[0],
+                                                button: true
+                                            })} />
+                                    </label>}
+                            </div> : ''}
 
                             {this.state.form ? <div className="my-2">
                                 <input type="text" className="form-control mb-2"
@@ -133,7 +138,13 @@ export default class tambahPost extends React.Component {
                                             <span className="sr-only">Loading...</span>
                                         </div>
                                     </div> : this.state.form ? <div className="text-center">
-                                        <button className="btn btn-danger btn-sm " onClick={() => this.batal()}>Batal</button>
+                                        <button className="btn btn-danger btn-sm " onClick={() => {
+                                            this.batal()
+                                            this.setState({
+                                                button: false,
+                                                formUpload : true
+                                            })
+                                        }}>Batal</button>
                                     </div> : ''}
                                     <img
                                         src={this.state.konten.imgUrl || "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAAD8CAMAAAAFbRsXAAAAZlBMVEU5gPv///+ewv8fU7FTj/syffsue/skd/t3pPzm7v50ovzy9v/U4f4pefuXtvxflfy5z/2kyP8oWbSWvf8jWr3c6P6sxv3X5f6cvP12o/ywyf3j7f+awf9VkfwtYMAnV7IuZcdNi/vEUSy1AAACuUlEQVR4nO3b63ISQRRF4RZhVBSJSYRcNJH3f0nNHZjb6UpNu3ez1ht8v+bUrp40T6ot5rcf4iVdSJr/+lkJZHYRl2hDMiTikLhEHRKWyEOiEn1IUGIAiUkcICGJBSQi8YAEJCaQcYkLZFRiAxmT+EBGJEaQYYkTZFBiBRmSeEEGJGaQfokbpFdiB+mT+EFmF9tKIN0SR0inxBLSJfGEdEhMIW2JK6QlsYUcS3whRxJjyKHEGXIgsYbsS7whexJzyJvEHfIqsYe8SPwhz5IKIE+SGiCPkiogDxJlyO8f4Wa3ypB0d38e7P5OGpIuP0Y714bEJeqQsEQeEpXoQ4ISA0hM4gAJSSwgEYkHJCAxgYxLXCCjEhvImMQHMiIxggxLnCCDEivIkMQLMiAxg/RL3CC9EjtIn8QP0iMxhHRLHCGdEktIl8QT0iExhbQlrpCWxBZyLPGFHEmMIYcSZ8iBxBqyL/GG7EnMIW8Sd8irxB7yIvGHPEsqgDxJaoA8SqqAPEjqgPyTVAJJl7VA0p9aIHMgYmVDFk2hFtNCFsvvhVrmSXIhq7PWP0ETdbYCAgQIECBAgEwNaa6234q0vWomhaTmU6HyHCd8xqsGRC0gagFRC4ha+btWsaaFLNafC7Vm1wICBAgQIECAhCGbL4XaTAtJq1K7Vp7jhM941YCoBUQtIGoBUeuEd63rZZGu2bWAAAECBAgQIOGam6+Fupn4vVYtj/xlA6IWELWAqAVErROGlByrMsqG7NbvajcNo/wZn3nT6kI2QIAAAQLkv0Ay38pMBkm7+buS+bLXc2upBkQtIGoBUQuIWkDUAqIWELWAqAVELSBqAVELiFpA1AKiFhC1gKgFRC0gagFRC4haQNQCohYQtYCoBUQtIGoBUQuIWkDUAqIWELWAqAVELSBqAVELiFpA1KoH8hf1znhNPIvNYAAAAABJRU5ErkJggg=="}

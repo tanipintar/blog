@@ -13,22 +13,44 @@ class Contact extends React.Component {
             loading: true
         })
         const db = firebase;
-        await db.firestore().collection("Contact").get().then(snap => {
-            snap.forEach(doc => {
-                this.setState(Object.assign(this.state.data.push({
-                    id: doc.id,
-                    nama: doc.data().nama,
-                    email: doc.data().email,
-                    hp: doc.data().hp,
-                    pesan: doc.data().pesan,
-                    tanggal: doc.data().tanggal
-                })))
+        try {
+            await db.firestore().collection("Contact").onSnapshot(snapshot => {
+                snapshot.docChanges().forEach(dataNew => {
+                    if (dataNew.type === "added") {
+                        this.setState(Object.assign(this.state.data.push({
+                            id: dataNew.doc.id,
+                            nama: dataNew.doc.data().nama,
+                            email: dataNew.doc.data().email,
+                            hp: dataNew.doc.data().hp,
+                            pesan: dataNew.doc.data().pesan,
+                            tanggal: dataNew.doc.data().tanggal
+                        })))
+                    }
+                })
+                this.setState({
+                    loading: false
+                })
             })
-            this.setState({
-                loading: false
-            })
-        }).catch(err => console.log(err));
-        console.log(this.state.data)
+            console.log(this.state.data)
+        } catch (error) {
+            console.log(error)
+        }
+        // await db.firestore().collection("Contact").get().then(snap => {
+        //     snap.forEach(doc => {
+        //         this.setState(Object.assign(this.state.data.push({
+        //             id: doc.id,
+        //             nama: doc.data().nama,
+        //             email: doc.data().email,
+        //             hp: doc.data().hp,
+        //             pesan: doc.data().pesan,
+        //             tanggal: doc.data().tanggal
+        //         })))
+        //     })
+        //     this.setState({
+        //         loading: false
+        //     })
+        // }).catch(err => console.log(err));
+        // console.log(this.state.data)
     }
     render() {
         return (
@@ -71,6 +93,7 @@ class Contact extends React.Component {
                                             )
                                         })}
                                     </tbody>}
+
                             </table>
                         </div>
                     </div>

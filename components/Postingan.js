@@ -1,5 +1,6 @@
 import React from 'react'
 import firebase from '../lib/koneksi'
+import Link from 'next/link';
 
 export default class Postingan extends React.Component {
   state = {
@@ -43,12 +44,12 @@ export default class Postingan extends React.Component {
                       <h5 className="card-title"><a>By {snap.creator}</a></h5>
                       <h4 className="card-title"><b className="yellow-text">{snap.tanggal}</b> <a>{snap.judul}</a></h4>
                       <p>
-                        {snap.isi}
+                        {snap.isi.substring(0, 50)}. . . .
                       </p>
-                      <a href="#" className="yellow-text">More >></a>
-
+                      <Link href={{pathname : '/morePost', query : { id : snap.id}}} as={`/morePost/${snap.judul}`}>
+                        <a className="yellow-text">More >></a>
+                      </Link>
                     </div>
-
                   </div>
                 </div>
               )

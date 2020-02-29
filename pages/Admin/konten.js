@@ -4,18 +4,21 @@ import LayoutAdmin from '../../components/Admin_component/layout';
 import firebase from '../../lib/koneksi'
 
 class Konten extends React.Component {
+//variabel data didalam state, semacam object
     state = {
-        data: [],
-        loading: false
+        data: [], //data kosong array
+        loading: false 
     }
-    async componentDidMount() {
-        this.setState({
+    // load data tidak menggunakan konstruktor atau get initial props
+    // get initial props sama saja load data ketika aplikasi baru pertama kali di jalankan, konstraktor ngeload setiap class komponen dijalankan
+    async componentDidMount() {// perubahan data yang dikirim pada user
+        this.setState({ //load data 
             loading : true
         })
         const db = firebase;
         await db.firestore().collection("Post").get().then(snap => {
             snap.forEach(doc => {
-                this.setState(Object.assign(this.state.data.push({
+                this.setState(Object.assign(this.state.data.push({ //seState digunakan untuk melakukan perubahan data dalam aplikasi dari value sebelumnya
                     id: doc.id,
                     judul: doc.data().judul,
                     creator: doc.data().creator,
@@ -29,17 +32,20 @@ class Konten extends React.Component {
                 loading : false
             })
         }).catch(err => console.log(err));
-        console.log(this.state.data)
+        console.log(this.state.data) //then: memberikan sebuah hasil tangkapan atau respon terhadap koneksi ke firestore
+        //catch: memberikan hasil pesan error ketika koneksi data tidak berjalan dengan lancar
     }
-    async hapusKonten(id,file){
-        const db = firebase;
-        await db.firestore().collection("Post").doc(id).delete().then(res=>{
+    async hapusKonten(id,file){ // fungsi untuk menghapus dokumen yang ada di firestore, yang memiliki 2 parameter.
+        //parameter id digunakan untuk menghapus dokumen di firestore, parameter file digunakan untuk menghapus dokumen
+        // di firebase storage
+        const db = firebase; // memanggil koneksi
+        await db.firestore().collection("Post").doc(id).delete().then(res=>{ //memanggil fungsi firestore dengan koleksi post
             console.log(res)
         }).catch(err=>console.log(err));
-        this.hapusFiles(file);
-        window.location.reload(true)
+        this.hapusFiles(file); 
+        window.location.reload(true) // digunakan untuk mereload ulang kembali page konten
     }
-    async hapusFiles(namaImage){
+    async hapusFiles(namaImage){ // fungsi untuk menghapus file di firebase storage
         const dbFiles = firebase;
         await dbFiles.storage().ref("Konten").child(namaImage).delete().then(res=>{
             console.log(res)
@@ -84,16 +90,26 @@ class Konten extends React.Component {
                                                     <td>{snap.tanggal}</td>
                                                     <td>{snap.judul}</td>
                                                     <td>{snap.creator}</td>
-                                                    <td>{snap.isi}</td>
+                                                    <td>{snap.isi.substring(0, 20)}. . . .</td>
                                                     <td>
                                                         <img src={snap.imgUrl} className="img-fluid" width="40" />
                                                     </td>
                                                     <td className="text-center">
                                                         <button className="btn btn-sm btn-danger" 
-                                                        type="button" onClick={()=>this.hapusKonten(snap.id, snap.namaImg)}>
+                                                        type="button" onClick={()=>{
+                                                            if (window.confirm('Apakah Anda Yakin Hapus ?')) {
+                                                                this.hapusKonten(snap.id, snap.namaImg)
+                                                            }
+                                                        }}>
                                                             <i className="fas fa-trash"></i>
                                                         </button>
-                                                        <button className="btn btn-sm btn-primary" href='/form'>
+                                                        <button className="btn btn-sm btn-primary" type="button"
+                                                        onClick={()=>{
+                                                            Router.push({
+                                                                pathname : '/Admin/editPost',
+                                                                query : {data : JSON.stringify(snap)}
+                                                            });
+                                                        }}>
                                                             <i className="fas fa-fw fa-edit"></i>
 
                                                         </button>

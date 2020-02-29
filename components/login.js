@@ -41,13 +41,15 @@ const Loginview = () => {
                             }
 
                             <div className="md-form mb-2 bg-white pb-1" style={{ borderRadius: '25px' }}>
-                                <i className="fas fa-lock prefix ml-3 mt-2"></i>
+                            <i className="fas fa-envelope prefix ml-3 mt-2"></i>
+                            &nbsp;&nbsp;
                                 <input type="text" className="form-control form-control-lg border-0"
                                     value={user} onChange={(e) => setUser(e.target.value)} />
                                 {user ? '' : <label htmlFor="inputValidationEx2" className="ml-5">Username</label>}
                             </div>
                             <div className="md-form mb-2 bg-white pb-1" style={{ borderRadius: '25px' }}>
-                                <i className="fas fa-envelope prefix ml-3 mt-2"></i>
+                                <i className="fas fa-lock prefix ml-3 mt-2"></i>
+                                &nbsp;&nbsp;
                                 <input type="password" value={pass} onChange={(e) => setPass(e.target.value)}
                                     className="form-control form-control-lg border-0" />
                                 {pass ? '' : <label htmlFor="inputValidationEx2" className="ml-5">Password</label>}

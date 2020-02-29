@@ -15,7 +15,7 @@ const Gallery = () => (
 
               <figure className="col-md-4">
                 <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg" data-size="1600x1067">
-                  <img alt="picture" src="./img/img/13.jpg"
+                  <img alt="picture" src="./img/img/Pengolahan7.jpg"
                     className="img-fluid" />
                 </a>
               </figure>
@@ -29,14 +29,14 @@ const Gallery = () => (
 
               <figure className="col-md-4">
                 <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(123).jpg" data-size="1600x1067">
-                  <img alt="picture" src="./img/img/123.png"
+                  <img alt="picture" src="./img/img/sri.png"
                     className="img-fluid" />
                 </a>
               </figure>
 
               <figure className="col-md-4">
                 <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(118).jpg" data-size="1600x1067">
-                  <img alt="picture" src="./img/img/132.png"
+                  <img alt="picture" src="./img/img/panen.png"
                     className="img-fluid" />
                 </a>
               </figure>
@@ -64,7 +64,7 @@ const Gallery = () => (
 
               <figure className="col-md-4">
                 <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(133).jpg" data-size="1600x1067">
-                  <img alt="picture" src="./img/img/g2.jpg"
+                  <img alt="picture" src="./img/img/tabur.png"
                     className="img-fluid" />
                 </a>
               </figure>

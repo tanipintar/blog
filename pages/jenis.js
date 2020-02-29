@@ -10,23 +10,23 @@ const JenisNutrisi = () => {
             </div>
             <div className="container my-5">
                 <section>
-
-                    <h6 className="font-weight-bold text-center grey-text text-uppercase small mb-4">Services</h6>
-                    <h3 className="font-weight-bold text-center dark-grey-text pb-2">Our Services</h3>
-                    <hr className="w-header my-4" />
-                    <p className="lead text-center text-muted pt-2 mb-5">Join thousands of satisfied customers using our template
-      globally.</p>
+                <div className=" text-center rounded p-5">
+                        <p className="green-text" style={{fontSize:'30px'}}>Jenis Nutrisi Pada Tumbuhan Padi</p>
+                            <hr className="yellow darken-2" style={{height:'3px', width:'150px'}}/>
+                </div>
 
                     <div className="row">
 
                         <div className="col-md-6 col-xl-3 mb-4">
                             <div className="card text-center text-white" style={{backgroundColor:'#45A71F'}}>
                                 <div className="card-body">
-                                    <p className="mt-4 px-5">
-                                        <img src="../img/img/OnGrow NitroGreen A.png" style={{height : '130px'}} className="w-100"></img>
+                                    <p className="mt-3 px-3">
+                                        <img src="../img/img/nitrogen.jpg" style={{height : '60px'}} className="w-40"></img>
                                     </p>
-                                    <h5 className="font-weight-normal my-4 py-2"><a className="text-white" href="#">Web Design</a></h5>
-                                    <p className="mb-4">He polite be object change. Consider no overcame yourself sociable children.</p>
+                                    <h5 className="font-weight-normal my-2 py-2"><a className="text-white" href="#">Nitrogen (N)</a></h5>
+                                    <p className="mb-4">Nitrogen termasuk ke dalam unsur hara makro yang memegang peran penting bagi pertumbuhan tanaman. 
+                                    Unsur hara berupa nitrogen sangat diperlukan untuk pembentukan atau pertumbuhan bagian-bagian vegetatif tanaman 
+                                    seperti daun, batang, dan akar.</p>
                                 </div>
                             </div>
                         </div>
@@ -34,11 +34,13 @@ const JenisNutrisi = () => {
                         <div className="col-md-6 col-xl-3 mb-4">
                             <div className="card text-center">
                                 <div className="card-body">
-                                    <p className="mt-4 px-5">
-                                        <img src="../img/img/OnGrow NitroGreen A.png" style={{height : '130px'}} className="w-100"></img>
+                                    <p className="mt-3 px-3">
+                                        <img src="../img/img/fosfor.jpg" style={{height : '60px'}} className="w-40"></img>
                                     </p>
-                                    <h5 className="font-weight-normal my-4 py-2"><a className="dark-grey-text" href="#">Mobile App</a></h5>
-                                    <p className="text-muted mb-4">He polite be object change. Consider no overcame yourself sociable children.</p>
+                                    <h5 className="font-weight-normal my-2 py-2"><a className="dark-grey-text" href="#">Fosfor (P)</a></h5>
+                                    <p className="text-muted mb-4">Fosfor atau phospat merupakan nutrisi hidroponik yang diperlukan tanaman 
+                                    dalam jumlah besar, termasuk ke dalam unsur hara makro. Jumlah fosfor pada tanaman lebih sedikit dibandingkan 
+                                    nitrogen dan kalium. Fosfor dianggap sebagai kunci setiap tanamanan. </p>
                                 </div>
                             </div>
                         </div>
