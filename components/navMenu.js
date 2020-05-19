@@ -28,18 +28,18 @@ const MenuNav = () =>{
             <a className="nav-link">Budidaya Padi</a>
           </Link>
         </li> */}
-        <li className={route.pathname == '/Pengolahan' ? 'nav-item activeNav dropdowns' : 
-        route.pathname == '/Pembibitan' ? 'nav-item activeNav dropdowns' :
-        route.pathname == '/Fase' ? 'nav-item activeNav dropdowns' : 'nav-item dropdowns'}>
+        <li className={route.pathname == '/pengolahan' ? 'nav-item activeNav dropdowns' : 
+        route.pathname == '/pembibitan' ? 'nav-item activeNav dropdowns' :
+        route.pathname == '/fase' ? 'nav-item activeNav dropdowns' : 'nav-item dropdowns'}>
           <a className="nav-link dropdown-toggle">Budidaya Padi</a>
           <div className="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
-          <Link href="/Pengolahan">
+          <Link href="/pengolahan">
               <a className="dropdown-item yellow-ic">Pengolahan Lahan</a>
             </Link>
-            <Link href="/Pembibitan">
+            <Link href="/pembibitan">
               <a className="dropdown-item yellow-ic">Pembibitan Benih</a>
             </Link>
-            <Link href="/Fase">
+            <Link href="/fase">
               <a className="dropdown-item yellow-ic">Fase-Fase Petumbuhan</a>
             </Link>
           </div>
